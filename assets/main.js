@@ -71,12 +71,37 @@
         "Services required: "+chosen.join(", ")+"\n"+
         "Preferred frequency: "+get("frequency")+"\n\n"+
         "Details:\n"+get("details")+"\n";
-      var subject="Walkthrough request — "+(get("company")||get("fullName"));
+      var subject="Walkthrough request from "+(get("company")||get("fullName"));
       var mailto="mailto:info@yearroundcleaning.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
       document.getElementById("formSuccess").classList.add("show");
       document.getElementById("formSuccess").scrollIntoView({behavior:"smooth",block:"center"});
       window.location.href=mailto;
     });
   }
+
+  /* hero quick form */
+  var hform=document.getElementById("heroForm");
+  if(hform){
+    function hErr(id,on){
+      var f=document.getElementById(id), e=document.getElementById("h-err-"+id.replace("h-",""));
+      if(f){f.setAttribute("aria-invalid",on?"true":"false");}
+      if(e){e.classList.toggle("show",on);}
+    }
+    hform.addEventListener("submit",function(ev){
+      ev.preventDefault();
+      var name=document.getElementById("h-name"), phone=document.getElementById("h-phone");
+      var ok=true,firstBad=null;
+      if(!name.value.trim()){hErr("h-name",true);ok=false;firstBad=name;}else{hErr("h-name",false);}
+      if(!phone.value.trim()){hErr("h-phone",true);ok=false;if(!firstBad)firstBad=phone;}else{hErr("h-phone",false);}
+      if(!ok){if(firstBad)firstBad.focus();return;}
+      var type=document.getElementById("h-type").value;
+      var body="Full name: "+name.value+"\nPhone: "+phone.value+"\nFacility type: "+type+"\n\n(Sent from the homepage quick form.)\n";
+      var subject="Walkthrough request from "+name.value;
+      var mailto="mailto:info@yearroundcleaning.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+      document.getElementById("heroSuccess").classList.add("show");
+      window.location.href=mailto;
+    });
+  }
+
   route();
 })();

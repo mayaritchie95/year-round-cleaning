@@ -53,6 +53,10 @@
     {"@type":"City","name":"Lake Country"},
     {"@type":"City","name":"Vernon"}
   ],
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"19:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"19:00"}
+  ],
   "founder": [
     {"@type":"Person","name":"Brittany Beamish"},
     {"@type":"Person","name":"Connor"}
@@ -63,6 +67,17 @@
     {"@type":"Offer","itemOffered":{"@type":"Service","name":"Office Cleaning"}},
     {"@type":"Offer","itemOffered":{"@type":"Service","name":"Automotive and Heavy Truck Dealership Cleaning"}},
     {"@type":"Offer","itemOffered":{"@type":"Service","name":"Industrial and Warehouse Cleaning"}}
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "bestRating": "5",
+    "reviewCount": "16"
+  },
+  "review": [
+    {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Mike Mak"},"reviewBody":"Their professionalism, communication, attention to detail, and consistent results have blown my mind. If you have the ability to hire them for your space, you won't regret it."},
+    {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Jessi K."},"reviewBody":"They are organized, detail-oriented, and consistently keep our workspace clean and welcoming for both our staff and clients."},
+    {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Cody Fortin"},"reviewBody":"What truly sets them apart is how seamless they make the process. Always just a phone call away, they've become a trusted part of our operations."}
   ]
 }
 </script>
@@ -96,11 +111,26 @@
 <body>
 <a class="skip" href="#main">Skip to main content</a>
 
+<div class="topbar">
+  <div class="wrap">
+    <span class="tb-left tb-hours">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Mon–Fri 8am–7pm · Sat 9am–7pm · Sun closed
+    </span>
+    <span class="tb-right">
+      <a href="tel:+17789974153">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (778) 997-4153
+      </a>
+    </span>
+  </div>
+</div>
+
 <header class="site">
   <div class="wrap nav">
     <a class="brand" href="#home" aria-label="Year Round Cleaning Solutions home">
       <img src="assets/images/logo.jpg" alt="Year Round Cleaning Solutions logo" width="46" height="53">
-      <span class="bt">Year Round Cleaning<small>Commercial &amp; Janitorial · Kelowna, BC</small></span>
+      <span class="bt">Year Round Cleaning<small>Commercial cleaning in Kelowna, BC</small></span>
     </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1025A2" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -109,6 +139,10 @@
       <a href="#home" data-nav="home">Home</a>
       <a href="#services" data-nav="services">Services</a>
       <a href="#contact" data-nav="contact">Contact</a>
+      <a class="nav-phone" href="tel:+17789974153">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (778) 997-4153
+      </a>
       <a class="btn btn-primary nav-cta" href="#contact">Request a walkthrough</a>
     </nav>
   </div>
@@ -119,20 +153,77 @@
 <!-- HOME -->
 <div class="view" id="view-home">
   <section class="hero" aria-labelledby="hero-h">
-    <div class="hero-media" aria-hidden="true"><img src="assets/images/hero.jpg" alt=""></div>
+    <div class="hero-media" aria-hidden="true"><img src="assets/images/team-at-work.jpg" alt=""></div>
     <div class="wrap hero-inner">
-      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Locally owned &amp; operated in Kelowna</span>
-      <h1 id="hero-h">Commercial cleaning your business never has to <span class="accent">think twice</span> about.</h1>
-      <p class="lead">Year Round Cleaning Solutions keeps Okanagan facilities spotless with dedicated, in-house crews, hands-on quality control, and cleaning programs built around how your business actually runs.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#contact">Request a free walkthrough</a>
-        <a class="btn btn-ghost" href="#services">See what we do</a>
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Locally owned and operated in Kelowna, BC</span>
+          <h1 id="hero-h">Commercial cleaning you can count on, all year round.</h1>
+          <p class="lead">We keep Okanagan facilities clean with our own dedicated crews, regular on-site quality checks, and cleaning schedules built around the way your business actually runs.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Request a free walkthrough</a>
+            <a class="btn btn-ghost" href="#services">See what we do</a>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          <span class="qb-badge">Free · No-obligation walkthrough</span>
+          <h2>Request a walkthrough</h2>
+          <p class="qb-sub">Tell us about your facility and we'll be in touch, usually within one business day.</p>
+          <form id="heroForm" novalidate aria-label="Quick walkthrough request">
+            <div class="field">
+              <label for="h-name">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input id="h-name" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="h-err-name">
+              <span class="error-msg" id="h-err-name">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="h-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+              <input id="h-phone" name="phone" type="tel" autocomplete="tel" required aria-required="true" aria-describedby="h-err-phone">
+              <span class="error-msg" id="h-err-phone">Please enter your phone number.</span>
+            </div>
+            <div class="field">
+              <label for="h-type">Type of facility</label>
+              <select id="h-type" name="facilityType">
+                <option value="">Select one…</option>
+                <option>Automotive / truck dealership</option>
+                <option>Medical or dental facility</option>
+                <option>Professional office</option>
+                <option>Industrial / warehouse</option>
+                <option>School or daycare</option>
+                <option>Church / community facility</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Request my walkthrough</button>
+          </form>
+          <div class="form-success" id="heroSuccess" role="status" aria-live="polite" style="margin:1rem 0 0">
+            Thanks. Your email app will open with your request ready to send. If it doesn't, call us at (778) 997-4153.
+          </div>
+          <p class="qb-foot">Prefer to talk? Call <a href="tel:+17789974153">(778) 997-4153</a></p>
+        </div>
       </div>
-      <div class="hero-trust">
-        <div><b>In-house</b><span>No subcontractors, ever</span></div>
-        <div><b>Consistent</b><span>The same trained crew</span></div>
-        <div><b>Accountable</b><span>Supervisor inspections</span></div>
-        <div><b>Okanagan</b><span>Kelowna &amp; surrounding area</span></div>
+    </div>
+  </section>
+
+  <section class="trust-strip" aria-label="Why choose us">
+    <div class="wrap">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <div><b>In-house team</b><span>No subcontractors, ever</span></div>
+        </div>
+        <div class="trust-item">
+          <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
+          <div><b>Locally owned</b><span>Based right here in Kelowna</span></div>
+        </div>
+        <div class="trust-item">
+          <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></span>
+          <div><b>Quality checked</b><span>Supervisor inspections</span></div>
+        </div>
+        <div class="trust-item">
+          <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <div><b>Easy to reach</b><span>Quick, clear communication</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -140,30 +231,29 @@
   <section aria-labelledby="why-h">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Why businesses stay with us</div>
-        <h2 id="why-h">A cleaning partner that's genuinely invested in your facility</h2>
-        <p>We build long-term relationships through reliability, clear communication, and a standard we hold ourselves to — not one we wait for you to enforce.</p>
+        <h2 id="why-h">A cleaning partner that takes your facility seriously</h2>
+        <p>We build long-term relationships through reliability, clear communication, and a standard we hold ourselves to.</p>
       </div>
       <div class="values">
         <div class="value">
           <div class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3>Our own team</h3>
-          <p>We never subcontract. Our cleaners are part of our team, so we invest in their training and keep your crew consistent.</p>
+          <p>We don't subcontract. The cleaners who look after your facility work for us, so you see the same familiar faces each visit.</p>
         </div>
         <div class="value">
           <div class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <h3>Hands-on quality control</h3>
-          <p>Regular supervisor inspections and on-site communication logbooks keep standards high and nothing slipping through the cracks.</p>
+          <h3>Checked, not assumed</h3>
+          <p>Our supervisors inspect the work regularly and keep an on-site logbook, so quality is something we track rather than hope for.</p>
         </div>
         <div class="value">
           <div class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3>Proactive communication</h3>
-          <p>We identify and address concerns before they become problems — and we're easy to reach when you need us.</p>
+          <h3>Easy to reach</h3>
+          <p>We flag concerns early and answer quickly when you have one. You should never have to chase your cleaning company.</p>
         </div>
         <div class="value">
           <div class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></div>
           <h3>Built around your facility</h3>
-          <p>No two facilities run the same way. Your cleaning program is tailored to your schedule, your priorities, and your needs.</p>
+          <p>A dealership, a dental office, and a warehouse don't need the same clean. We set a schedule and scope that fit yours.</p>
         </div>
       </div>
     </div>
@@ -172,46 +262,50 @@
   <section class="alt" aria-labelledby="svc-h">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">What we do</div>
         <h2 id="svc-h">Core commercial cleaning services</h2>
-        <p>Reliable, recurring cleaning for facilities across the Okanagan — scheduled around your hours so your space is ready when it matters.</p>
+        <p>Reliable, recurring cleaning for facilities across the Okanagan, scheduled around your hours so your space is ready when you open.</p>
       </div>
-      <div class="svc-grid">
+      <div class="svc-featured">
         <article class="svc">
           <div class="svc-img"><img src="assets/images/disinfect.jpg" alt="Cleaner disinfecting a surface with spray and microfibre cloth" loading="lazy"></div>
-          <div class="svc-body"><div class="tag">Most requested</div><h3>After hours janitorial</h3><p>Thorough overnight and after-hours cleaning that keeps your facility pristine without disrupting your workday.</p></div>
+          <div class="svc-body"><span class="svc-flag">Most requested</span><h3>After hours janitorial</h3><p>Overnight and after-hours cleaning that keeps your facility in top shape without getting in the way of your workday. The space is ready before your team walks in.</p><p style="margin:1rem 0 0"><a href="#services" style="font-weight:600">See what's included</a></p></div>
         </article>
         <article class="svc">
-          <div class="svc-img"><img src="assets/images/hero.jpg" alt="Professional janitorial team cleaning a commercial office" loading="lazy"></div>
-          <div class="svc-body"><div class="tag">Recurring</div><h3>Commercial janitorial</h3><p>Dependable day-to-day janitorial service on a schedule that fits how your business operates.</p></div>
-        </article>
-        <article class="svc">
-          <div class="svc-img"><img src="assets/images/office.jpg" alt="Clean, modern professional office workspace" loading="lazy"></div>
-          <div class="svc-body"><div class="tag">Workspace</div><h3>Office cleaning</h3><p>A clean, professional workspace your team and your clients will notice — detailed and consistent, every visit.</p></div>
-        </article>
-        <article class="svc">
-          <div class="svc-img"><img src="assets/images/dealership.jpg" alt="Polished glass-walled commercial showroom interior" loading="lazy"></div>
-          <div class="svc-body"><div class="tag">Specialized</div><h3>Dealership cleaning</h3><p>Showrooms, service bays, and lots kept presentation-ready for automotive and heavy truck dealerships.</p></div>
-        </article>
-        <article class="svc">
-          <div class="svc-img"><img src="assets/images/floor.jpg" alt="Hard floor being scrubbed and squeegeed in a commercial space" loading="lazy"></div>
-          <div class="svc-body"><div class="tag">Heavy-duty</div><h3>Industrial &amp; warehouse</h3><p>Cleaning built for the scale and demands of warehouses, manufacturing, and industrial facilities.</p></div>
-        </article>
-        <article class="svc">
-          <div class="svc-img"><img src="assets/images/carpet.jpg" alt="Carpet being deep cleaned by an extraction machine" loading="lazy"></div>
-          <div class="svc-body"><div class="tag">Also available</div><h3>Floors, carpet &amp; deep cleaning</h3><p>Carpet cleaning, hard-floor scrubbing and maintenance, and periodic deep cleans to keep every surface at its best.</p></div>
+          <div class="svc-img"><img src="assets/images/glass-office.jpg" alt="Polished glass-walled commercial showroom interior" loading="lazy"></div>
+          <div class="svc-body"><span class="svc-flag">Specialty</span><h3>Dealership cleaning</h3><p>Showrooms, service bays, and customer areas kept presentation-ready for automotive and heavy truck dealerships, so every customer sees your best.</p><p style="margin:1rem 0 0"><a href="#services" style="font-weight:600">See what's included</a></p></div>
         </article>
       </div>
-      <p style="margin-top:2rem"><a class="btn btn-outline" href="#services">Explore all services &amp; who we serve</a></p>
+      <div class="svc-compact">
+        <article class="svc-mini">
+          <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></div>
+          <h3>Commercial janitorial</h3>
+          <p>Dependable day-to-day service on a schedule that fits your operation.</p>
+        </article>
+        <article class="svc-mini">
+          <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg></div>
+          <h3>Office cleaning</h3>
+          <p>A clean, professional workspace, kept consistent on every visit.</p>
+        </article>
+        <article class="svc-mini">
+          <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V8l6-4 6 4v12M9 20v-5h2v5"/></svg></div>
+          <h3>Industrial &amp; warehouse</h3>
+          <p>Cleaning scaled to busy warehouses and industrial spaces.</p>
+        </article>
+        <article class="svc-mini">
+          <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a2 2 0 0 1 2-2h8l6 6v14H4z"/><path d="M8 13h8M8 17h8"/></svg></div>
+          <h3>Floors &amp; carpet</h3>
+          <p>Carpet cleaning, floor scrubbing, and periodic deep cleans.</p>
+        </article>
+      </div>
+      <p style="margin-top:2rem"><a class="btn btn-outline" href="#services">See all services and who we serve</a></p>
     </div>
   </section>
 
   <section aria-labelledby="serve-h">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Who we serve</div>
         <h2 id="serve-h">Trusted across a range of industries</h2>
-        <p>From a single office to multiple locations, we take care of facilities with very different needs — and tailor our approach to each one.</p>
+        <p>Whether you run one location or several, we look after facilities with very different needs and tailor our approach to each.</p>
       </div>
       <div class="serve">
         <div class="serve-item"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Automotive &amp; truck dealerships</div>
@@ -227,21 +321,20 @@
   <section class="alt" aria-labelledby="diff-h">
     <div class="wrap split">
       <div>
-        <div class="kicker" style="color:var(--green-ink);font-weight:700;margin-bottom:.6rem">The difference</div>
-        <h2 id="diff-h">Involvement, consistency, and accountability</h2>
-        <p class="lead-para">We're a locally owned company, not a franchise running on autopilot. That means more control over quality, and a team that actually cares how your facility looks.</p>
+        <h2 id="diff-h">What sets us apart</h2>
+        <p class="lead-para">We're locally owned, and we stay close to the work. That gives us more control over quality and a team that cares how your facility looks.</p>
         <ul>
-          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>We don't subcontract — your cleaners are our employees.</span></li>
-          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Consistent, dedicated crews that learn your facility.</span></li>
-          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Regular supervisor inspections and logbooks on site.</span></li>
-          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Cleaning programs built around your needs, not a template.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>The cleaners in your building work for us, not a subcontractor.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>The same dedicated crew, so they get to know your facility.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Supervisors inspect the work and log it on site.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>A cleaning plan shaped around your needs, not a set template.</span></li>
         </ul>
       </div>
       <div class="media-frame">
-        <img src="assets/images/team.jpg" alt="The Year Round Cleaning Solutions crew in branded blue shirts with cleaning equipment">
+        <img src="assets/images/team-lineup.jpg" alt="The Year Round Cleaning Solutions crew in branded blue shirts with cleaning equipment">
         <div class="quote">
-          <blockquote>“We want our clients to feel confident things are being taken care of — and valued well beyond the contract they've signed.”</blockquote>
-          <cite>— The Year Round Cleaning Solutions team</cite>
+          <blockquote>“We want our clients to feel confident their facility is in good hands, and valued well beyond the contract they signed.”</blockquote>
+          <cite>Brittany and Connor, co-owners</cite>
         </div>
       </div>
     </div>
@@ -250,10 +343,10 @@
   <section style="padding-top:0">
     <div class="wrap">
       <div class="band">
-        <img src="assets/images/office-team.jpg" alt="Year Round Cleaning Solutions staff cleaning desks and screens in an office">
+        <img src="assets/images/team-office.jpg" alt="Year Round Cleaning Solutions staff cleaning desks and screens in an office">
         <div class="band-ov">
-          <h3>Real people, on our payroll — not subcontractors</h3>
-          <p>The same trained, uniformed crew comes back to your facility. That's how we keep quality consistent and build trust over time.</p>
+          <h3>A local team that shows up</h3>
+          <p>We live and work in the Okanagan, and we treat the businesses here like neighbours. When something needs attention, we're close by and easy to reach.</p>
         </div>
       </div>
     </div>
@@ -262,7 +355,6 @@
   <section aria-labelledby="area-h" style="padding-top:clamp(2rem,4vw,3rem)">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Service area</div>
         <h2 id="area-h">Proudly serving Kelowna &amp; the Okanagan</h2>
         <p>We're based in Kelowna and currently serve the surrounding Okanagan communities, with plans to expand throughout BC and Alberta as we grow.</p>
       </div>
@@ -271,16 +363,79 @@
         <span class="chip">West Kelowna</span>
         <span class="chip">Lake Country</span>
         <span class="chip">Vernon</span>
-        <span class="chip future">Okanagan-wide · expanding</span>
+        <span class="chip future">Growing across the Okanagan</span>
       </div>
     </div>
   </section>
 
-  <section class="alt">
+  <section class="alt" aria-labelledby="rev-h">
+    <div class="wrap">
+      <div class="reviews-head">
+        <div class="section-head" style="margin-bottom:0">
+          <h2 id="rev-h">What our clients say</h2>
+          <p>A few words from the businesses we look after around Kelowna.</p>
+        </div>
+        <div class="rating">
+          <span class="stars" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg>
+          </span>
+          Rated 5 stars on Google
+        </div>
+      </div>
+
+      <div class="quotes">
+        <blockquote class="quote-card">
+          <span class="stars" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></span>
+          <p>“Their professionalism, communication, attention to detail, and consistent results have blown my mind. I legitimately feel like I've been wasting my cleaning investment with prior service providers. If you have the ability to hire them for your space, you won't regret it.”</p>
+          <footer class="who"><span class="av" aria-hidden="true">MM</span><span><b>Mike Mak</b><span>Google review</span></span></footer>
+        </blockquote>
+
+        <blockquote class="quote-card">
+          <span class="stars" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></span>
+          <p>“They are organized, detail-oriented, and consistently keep our workspace clean and welcoming for both our staff and clients. We've definitely noticed fewer sniffles around the office and fewer sick days since they've been keeping everything spotless.”</p>
+          <footer class="who"><span class="av" aria-hidden="true">JK</span><span><b>Jessi K.</b><span>Office client · Google review</span></span></footer>
+        </blockquote>
+
+        <blockquote class="quote-card">
+          <span class="stars" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></span>
+          <p>“What truly sets them apart is how seamless they make the process. Many tasks that used to take multiple steps have become a simple ‘it's taken care of' thanks to their proactive approach. Always just a phone call away, they've become a trusted part of our operations.”</p>
+          <footer class="who"><span class="av" aria-hidden="true">CF</span><span><b>Cody Fortin</b><span>Google review</span></span></footer>
+        </blockquote>
+
+        <blockquote class="quote-card">
+          <span class="stars" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></span>
+          <p>“This wasn't just a surface clean. You could see the attention to detail throughout the entire space, and everything looked sparkling clean. Their team arrived on time, completed everything we requested, and went above and beyond. That is what I call amazing customer service!”</p>
+          <footer class="who"><span class="av" aria-hidden="true">LR</span><span><b>The Laundry Room</b><span>Kelowna · Google review</span></span></footer>
+        </blockquote>
+
+        <blockquote class="quote-card">
+          <span class="stars" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></span>
+          <p>“Their level of service, professionalism and promptness is unmatched. It is such a personalized touch, right from the very first quote and into the day-to-day services. They treat us like old friends. If you require cleaning services, make them your first call!”</p>
+          <footer class="who"><span class="av" aria-hidden="true">TR</span><span><b>Tank the Ram</b><span>Local Guide · Google review</span></span></footer>
+        </blockquote>
+
+        <blockquote class="quote-card">
+          <span class="stars" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3L12 16.9 5.7 21l2.3-7.3-6-4.3h7.6z"/></svg></span>
+          <p>“After working with the team at Year Round Cleaning Solutions for almost a year now, I can say with confidence that their standards of professionalism, customer service, and quality are unmatched. They genuinely care about the people and businesses they serve.”</p>
+          <footer class="who"><span class="av" aria-hidden="true">DE</span><span><b>Diane Evdokimoff</b><span>Google review</span></span></footer>
+        </blockquote>
+      </div>
+
+      <p class="reviews-cta"><a href="https://share.google/Tb7sWeSBLYykPhapc" target="_blank" rel="noopener">Read more reviews on Google
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a></p>
+    </div>
+  </section>
+
+  <section>
     <div class="wrap">
       <div class="cta-band">
-        <h2>Ready to see the difference in person?</h2>
-        <p>Book a free, no-pressure walkthrough. We'll tour your facility, understand your priorities, and put together a cleaning program that fits.</p>
+        <h2>Book a free walkthrough</h2>
+        <p>We'll tour your facility, talk through your priorities, and put together a cleaning plan that fits. No pressure, no obligation.</p>
         <a class="btn btn-primary" href="#contact">Schedule your walkthrough</a>
       </div>
     </div>
@@ -294,16 +449,15 @@
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a> / Services</nav>
       <h1 id="sp-h">Commercial cleaning services for every kind of facility</h1>
-      <p>Reliable, recurring cleaning delivered by our own trained crews — scheduled around your operations and tailored to your space.</p>
+      <p>Reliable, recurring cleaning delivered by our own trained crews, scheduled around your operations and tailored to your space.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Core services</div>
         <h2>What we specialize in</h2>
-        <p>These are the services most of our clients count on us for, week in and week out.</p>
+        <p>These are the services our clients rely on us for most often.</p>
       </div>
       <div class="svc-grid">
         <article class="svc">
@@ -311,20 +465,20 @@
           <div class="svc-body"><h3>After hours janitorial</h3><p>Overnight and after-hours cleaning that leaves your facility ready for the next day without ever getting in the way of your business.</p></div>
         </article>
         <article class="svc">
-          <div class="svc-img"><img src="assets/images/hero.jpg" alt="Janitorial crew servicing a commercial space" loading="lazy"></div>
-          <div class="svc-body"><h3>Commercial janitorial services</h3><p>Dependable, recurring janitorial care — washrooms, common areas, touchpoints, and everything that keeps a facility running clean.</p></div>
+          <div class="svc-img"><img src="assets/images/team-at-work.jpg" alt="Janitorial crew servicing a commercial space" loading="lazy"></div>
+          <div class="svc-body"><h3>Commercial janitorial services</h3><p>Recurring janitorial care that covers washrooms, common areas, high-touch surfaces, and everything in between.</p></div>
         </article>
         <article class="svc">
-          <div class="svc-img"><img src="assets/images/office.jpg" alt="Tidy professional office interior" loading="lazy"></div>
+          <div class="svc-img"><img src="assets/images/office-wide.jpg" alt="Tidy professional office interior" loading="lazy"></div>
           <div class="svc-body"><h3>Office cleaning</h3><p>Detailed, consistent office cleaning that keeps your workspace professional and healthy for staff and visitors alike.</p></div>
         </article>
         <article class="svc">
-          <div class="svc-img"><img src="assets/images/dealership.jpg" alt="Bright glass-walled showroom" loading="lazy"></div>
+          <div class="svc-img"><img src="assets/images/glass-office.jpg" alt="Bright glass-walled showroom" loading="lazy"></div>
           <div class="svc-body"><h3>Automotive &amp; heavy truck dealership cleaning</h3><p>Showrooms that shine, service bays kept orderly, and customer areas that reflect the quality of your dealership.</p></div>
         </article>
         <article class="svc">
-          <div class="svc-img"><img src="assets/images/lobby.jpg" alt="Large commercial lobby with polished floors" loading="lazy"></div>
-          <div class="svc-body"><h3>Industrial &amp; warehouse cleaning</h3><p>Cleaning scaled to busy industrial environments — floors, high-traffic zones, and the details that keep a worksite safe and tidy.</p></div>
+          <div class="svc-img"><img src="assets/images/floor.jpg" alt="Hard floor being scrubbed in a large industrial space" loading="lazy"></div>
+          <div class="svc-body"><h3>Industrial &amp; warehouse cleaning</h3><p>Cleaning scaled to busy industrial spaces: floors, high-traffic zones, and the details that keep a worksite safe and tidy.</p></div>
         </article>
         <article class="svc">
           <div class="svc-img"><img src="assets/images/carpet.jpg" alt="Carpet extraction cleaning in progress" loading="lazy"></div>
@@ -337,9 +491,8 @@
   <section class="alt">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Who we serve</div>
         <h2>Tailored to your industry</h2>
-        <p>We understand that a dealership, a dental office, and a warehouse don't need the same thing. Here's who we take care of.</p>
+        <p>A dealership, a dental office, and a warehouse each need a different kind of clean. Here's who we look after.</p>
       </div>
       <div class="serve">
         <div class="serve-item"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Automotive &amp; heavy truck dealerships</div>
@@ -357,8 +510,8 @@
       <div class="band">
         <img src="assets/images/inspect.jpg" alt="Supervisor completing a quality-control inspection checklist on site">
         <div class="band-ov">
-          <h3>Quality control you can actually see</h3>
-          <p>Regular supervisor inspections and on-site logbooks mean standards are checked and documented — not left to chance.</p>
+          <h3>Quality you can see for yourself</h3>
+          <p>Supervisors inspect the work and record it in an on-site logbook, so standards are checked and documented rather than left to chance.</p>
         </div>
       </div>
     </div>
@@ -367,7 +520,7 @@
   <section>
     <div class="wrap">
       <div class="cta-band">
-        <h2>Let's build a program around your facility</h2>
+        <h2>Let's build a plan around your facility</h2>
         <p>Every space is different. Tell us about yours and we'll recommend the right cleaning schedule and scope.</p>
         <a class="btn btn-primary" href="#contact">Request a walkthrough</a>
       </div>
@@ -378,11 +531,11 @@
 <!-- CONTACT -->
 <div class="view" id="view-contact">
   <section class="page-hero" aria-labelledby="cp-h">
-    <div class="media" aria-hidden="true"><img src="assets/images/eco.jpg" alt=""></div>
+    <div class="media" aria-hidden="true"><img src="assets/images/lobby.jpg" alt=""></div>
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a> / Contact</nav>
       <h1 id="cp-h">Request your free walkthrough</h1>
-      <p>Tell us a little about your facility and we'll be in touch to schedule a time. Quick to fill out — only the essentials are required.</p>
+      <p>Tell us a bit about your facility and we'll be in touch to set up a time. It only takes a minute, and just the basics are required.</p>
     </div>
   </section>
 
@@ -411,7 +564,7 @@
 
       <div class="form-card">
         <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-          Thanks — your request has been prepared. Your email app will open so you can send it to our team, or email us directly at info@yearroundcleaning.com.
+          Thanks. Your email app will open with your request ready to send. If it doesn't, you can email us directly at info@yearroundcleaning.com.
         </div>
         <form id="quoteForm" novalidate aria-label="Quote request form">
           <div class="form-grid">
@@ -501,7 +654,7 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand"><img src="assets/images/logo.jpg" alt="Year Round Cleaning Solutions logo" width="42" height="49"> Year Round Cleaning Solutions</div>
-        <p style="color:#9aa7da;max-width:34ch">Locally owned and operated commercial cleaning, built on relationships, consistency, and doing things right.</p>
+        <p style="color:#9aa7da;max-width:34ch">Locally owned commercial cleaning for Kelowna and the Okanagan, built on steady relationships and work done right.</p>
       </div>
       <div>
         <h4>Company</h4>
@@ -518,9 +671,15 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="tel:+17789974153">778-997-4153</a>
+        <a href="tel:+17789974153">(778) 997-4153</a>
         <a href="mailto:info@yearroundcleaning.com">info@yearroundcleaning.com</a>
         <span style="color:#9aa7da;display:block;padding:.3rem 0">6945 Sierra Drive<br>Kelowna, BC</span>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <span style="color:#c7d0f2;display:block;padding:.2rem 0">Monday to Friday<br>8:00 am – 7:00 pm</span>
+        <span style="color:#c7d0f2;display:block;padding:.2rem 0">Saturday<br>9:00 am – 7:00 pm</span>
+        <span style="color:#9aa7da;display:block;padding:.2rem 0">Sunday closed</span>
       </div>
     </div>
     <div class="foot-bottom">
