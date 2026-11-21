@@ -192,6 +192,8 @@ section{padding:clamp(3.2rem,7vw,5.5rem) 0;position:relative}
 .media-frame{border-radius:20px;overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:320px}
 .media-frame img{width:100%;height:100%;object-fit:cover;min-height:320px}
 .media-frame .quote{position:absolute;left:0;right:0;bottom:0;padding:1.8rem;background:linear-gradient(transparent,rgba(10,20,110,.9));color:#fff}
+.proposed-flag{display:inline-block;background:#FFE9A8;color:#6b4e00;border:1px solid #E7C65C;font-weight:700;font-size:.72rem;letter-spacing:.02em;padding:.3rem .7rem;border-radius:7px;margin-bottom:.7rem}
+.media-frame .proposed-flag{position:relative;z-index:2}
 .media-frame blockquote{margin:0;font-family:"Bricolage Grotesque",sans-serif;font-size:1.15rem;font-weight:600;line-height:1.35}
 .media-frame cite{display:block;margin-top:.7rem;font-style:normal;font-size:.88rem;color:#d7e9c9}
 
